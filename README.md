@@ -1,3 +1,3 @@
 Readme
 !Hola este será un nuevo cambio¡
-¡Acabas de hacer un git pull!
+¡Este es un nuevo cambio!
