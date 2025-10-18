@@ -2,93 +2,103 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 fun main() {
-    var opcion: Int // Variable para almacenar la opción del menú
 
-    do {
-        // Menú principal de opciones
-        println("\n--- CALCULADORA PROFESIONAL ---")
+    // Variable para guardar la opción del menú
+    var opcion = 0
+
+    // Repite el menú hasta que el usuario elija salir
+    while (opcion != 8) {
+        println("\n--- CALCULADORA ---")
         println("1. Suma")
         println("2. Resta")
         println("3. Multiplicación")
         println("4. División")
-        println("5. Potencia (x^y)")
+        println("5. Potencia")
         println("6. Raíz cuadrada")
         println("7. Módulo")
         println("8. Salir")
-        print("Selecciona una opción (1-8): ")
+        print("Elige una opción: ")
+        opcion = readLine()?.toIntOrNull() ?: 0 // Lee la opción del usuario
 
-        // Lee la opción del usuario. Si no es válida, se asigna -1
-        opcion = readLine()?.toIntOrNull() ?: -1
-
-        // Estructura de decisión para ejecutar la opción elegida
+        // Según la opción elegida, realiza una operación
         when (opcion) {
+
+            // Suma
             1 -> {
-                // Suma de dos números
-                val a = pedirNumero("Primer número: ")
-                val b = pedirNumero("Segundo número: ")
+                print("Número 1: ")
+                val a = readLine()!!.toDouble()
+                print("Número 2: ")
+                val b = readLine()!!.toDouble()
                 println("Resultado: ${a + b}")
             }
+
+            // Resta
             2 -> {
-                // Resta de dos números
-                val a = pedirNumero("Primer número: ")
-                val b = pedirNumero("Segundo número: ")
+                print("Número 1: ")
+                val a = readLine()!!.toDouble()
+                print("Número 2: ")
+                val b = readLine()!!.toDouble()
                 println("Resultado: ${a - b}")
             }
+
+            // Multiplicación
             3 -> {
-                // Multiplicación de dos números
-                val a = pedirNumero("Primer número: ")
-                val b = pedirNumero("Segundo número: ")
+                print("Número 1: ")
+                val a = readLine()!!.toDouble()
+                print("Número 2: ")
+                val b = readLine()!!.toDouble()
                 println("Resultado: ${a * b}")
             }
+
+            // División con validación de cero
             4 -> {
-                // División de dos números, validando que no se divida entre cero
-                val a = pedirNumero("Dividendo: ")
-                val b = pedirNumero("Divisor: ")
-                if (b != 0.0) {
+                print("Dividendo: ")
+                val a = readLine()!!.toDouble()
+                print("Divisor: ")
+                val b = readLine()!!.toDouble()
+                if (b != 0.0)
                     println("Resultado: ${a / b}")
-                } else {
-                    println("❌ No se puede dividir entre cero.")
-                }
+                else
+                    println("No se puede dividir entre cero.")
             }
+
+            // Potencia
             5 -> {
-                // Potencia (x^y)
-                val base = pedirNumero("Base: ")
-                val exponente = pedirNumero("Exponente: ")
-                println("Resultado: ${base.pow(exponente)}")
+                print("Base: ")
+                val base = readLine()!!.toDouble()
+                print("Exponente: ")
+                val exp = readLine()!!.toDouble()
+                println("Resultado: ${base.pow(exp)}")
             }
+
+            // Raíz cuadrada con validación
             6 -> {
-                // Raíz cuadrada, validando que el número no sea negativo
-                val num = pedirNumero("Número: ")
-                if (num >= 0) {
+                print("Número: ")
+                val num = readLine()!!.toDouble()
+                if (num >= 0)
                     println("Resultado: ${sqrt(num)}")
-                } else {
-                    println("❌ No se puede calcular raíz de un número negativo.")
-                }
+                else
+                    println("No se puede calcular raíz negativa.")
             }
+
+            // Módulo
             7 -> {
-                // Módulo o residuo, validando que el divisor no sea cero
-                val a = pedirNumero("Dividendo: ")
-                val b = pedirNumero("Divisor: ")
-                if (b != 0.0) {
+                print("Dividendo: ")
+                val a = readLine()!!.toDouble()
+                print("Divisor: ")
+                val b = readLine()!!.toDouble()
+                if (b != 0.0)
                     println("Resultado: ${a % b}")
-                } else {
-                    println("❌ No se puede calcular módulo con cero.")
-                }
+                else
+                    println("No se puede dividir entre cero.")
             }
-            8 -> println("👋 ¡Hasta luego!") // Salida del programa
-            else -> println("❌ Opción inválida.") // Opción incorrecta
+
+            // Salir
+            8 -> println("¡Hasta luego!")
+
+            // Opción inválida
+            else -> println("Opción inválida.")
+            
         }
-
-    } while (opcion != 8) // El ciclo se repite mientras no se elija salir
-}
-
-// Función para pedir un número al usuario y validar la entrada
-fun pedirNumero(mensaje: String): Double {
-    while (true) {
-        print(mensaje)
-        val entrada = readLine()
-        val numero = entrada?.toDoubleOrNull()
-        if (numero != null) return numero // Si el número es válido, se devuelve
-        println("❌ Entrada inválida. Intenta de nuevo.") // Mensaje de error
     }
 }
