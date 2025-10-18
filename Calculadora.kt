@@ -98,7 +98,8 @@ fun main() {
 
             // Opción inválida
             else -> println("Opción inválida.")
-            
+
         }
     }
 }
+ 
