@@ -1,4 +1,4 @@
-## Comandos básicos de Git 
+## Comandos básicos de Git ⬇️
 
 ```bash
 git init ✅
@@ -14,7 +14,7 @@ git commit -m "Mensaje que explica el cambio" ✅
 # Guarda en el historial los cambios añadidos al staging area.
 ```
 
-## Configuración de Git
+## Configuración de Git ⬇️
 
 ```bash
 git config --global user.name "Tu Nombre" ✅
@@ -30,7 +30,7 @@ git config user.email ✅
 # Muestra el email configurado actualmente.
 ```
 
-## Historial y Estado
+## Historial y Estado ⬇️
 
 ```bash
 git status ✅
@@ -43,7 +43,20 @@ git log --oneline --graph --all ✅
 # Muestra el historial de commits gráficamente y en todas las ramas.
 ```
 
-## Restaurar Cambios
+## Revisión de Cambios ⬇️
+
+```bash
+git diff ✅
+# Compara los cambios en el archivo con el último commit. Muestra qué líneas se agregaron (verde) o eliminaron (rojo) antes de hacer git add.
+
+git diff --staged ✅
+# Compara los archivos en el staging area frente al último commit. Muestra lo que está listo para el commit.
+
+git diff HEAD ✅
+# Compara todo el proyecto (con y sin 'git add') con el último commit.
+```
+
+## Restaurar Cambios ⬇️
 
 ```bash
 git restore --staged main.js ✅
@@ -54,32 +67,45 @@ git restore main.js ✅
 # Solo funciona si el archivo no está en el staging area.
 ```
 
-## Vincular repositorio remoto y subir cambios
+## Guardar cambios temporalmente (Stash) ⬇️
+
+```bash
+git stash ✅
+# Guarda temporalmente todos tus cambios no guardados en un "cajón" y deja tu proyecto limpio.
+
+git stash pop ✅
+# Saca los cambios del "cajón" y los vuelve a aplicar en tu código actual.
+```
+
+## Vincular repositorio remoto y subir cambios ⬇️
 
 ```bash
 git remote add origin https://github.com/tu_usuario/tu_repo.git ✅
 # Conecta tu proyecto local con un repositorio remoto (GitHub).
 
-git push -u origin master ✅
-# Sube por primera vez tu rama local 'master' al repositorio remoto y la vincula.
+git push -u origin main ✅
+# Sube por primera vez tu rama local 'main' al repositorio remoto y la vincula.
 
 git push ✅
 # Sube tus cambios locales (commits) al repositorio remoto.
 # Solo funciona si ya está vinculada la rama con el remoto.
 ```
 
-## Clonar y actualizar repositorios
+## Clonar y actualizar repositorios ⬇️
 
 ```bash
 git clone https://github.com/usuario/repositorio.git ✅
 # Copia un repositorio remoto a tu computadora.
 # Debes hacerlo desde git bash en una carpeta vacía.
 
+git fetch ✅
+# Descarga los cambios del repositorio remoto (GitHub) pero NO los fusiona automáticamente. Es seguro para revisar.
+
 git pull ✅
 # Descarga y fusiona los últimos cambios del repositorio remoto con tu rama actual.
 ```
 
-## Ramas (branches)
+## Ramas (branches) ⬇️
 
 ```bash
 git checkout -b login ✅
@@ -88,18 +114,18 @@ git checkout -b login ✅
 git branch ✅
 # Muestra todas las ramas locales y resalta la rama actual.
 
-git checkout master ✅
-# Cambia a la rama 'master'.
+git checkout main ✅
+# Cambia a la rama 'main'.
 
 git push --set-upstream origin login ✅
 # Sube la nueva rama 'login' al remoto y la vincula para futuros push/pull.
 ```
 
-## Fusionar y eliminar ramas
+## Fusionar y eliminar ramas ⬇️
 
 ```bash
 git merge login ✅
-# Fusiona la rama 'login' con tu rama actual (debes estar en 'master').
+# Fusiona la rama 'login' con tu rama actual (debes estar en 'main').
 
 git branch -d login ✅
 # Elimina la rama local 'login' si ya fue fusionada.
@@ -112,115 +138,35 @@ git push origin --delete login ✅
 # Para eliminar una rama desde git hub, damos click en view all branches y la borramos.
 ```
 
-## Pull Request (PR) desde GitHub
+## Pull Request (PR) desde GitHub ⬇️
 
 ```bash
-1. Ve a tu repositorio en GitHub y selecciona la rama login.
-2. Haz clic en "Compare & pull request", o también puedes ir a la pestaña "Pull requests" y hacer clic en "New pull request".
-3. Compara tu rama login con la rama base master. Asegúrate que base sea master y compare sea login.
-4. Haz clic en "Create pull request".
-5. Agrega un título y una descripción (opcional) que expliquen los cambios.
-6. Haz clic en "Merge pull request" para fusionar los cambios de login hacia master.
-7. (Opcional) Elimina la rama login si ya no la necesitas.
-💡 ¿Para qué sirve un Pull Request (PR)?
-Permite fusionar los cambios hechos en una rama (como login) hacia otra (como master), con una revisión previa.
-Es muy útil cuando trabajas en equipo, ya que otros pueden revisar, comentar o aprobar los cambios antes de integrarlos.
+⭕¿Para qué sirve un Pull Request (PR)?
+Permite fusionar los cambios hechos en una rama (como 'login') hacia otra (como 'main') con una revisión previa.
+Es ideal para trabajar en equipo, permitiendo revisar, comentar o aprobar antes de integrar.
+
+⭕Pasos para hacerlo desde la web de GitHub:
+1. Ve a tu repositorio en GitHub y selecciona tu rama.
+2. Haz clic en "Compare & pull request" (o ve a "Pull requests" > "New pull request").
+3. Asegúrate de que la rama base sea 'main' y la rama a comparar sea tu rama de trabajo.
+4. Agrega un título, una descripción y haz clic en "Create pull request".
+5. Una vez aprobado, haz clic en "Merge pull request" para fusionarlo y elimina la rama.
 ```
 
-## Limpieza de ramas remotas eliminadas
+## ¿Qué es un Fork? ⬇️
 
 ```bash
-git remote prune origin ✅
-# Elimina de tu Git local las referencias de ramas remotas que ya no existen en GitHub.
-```
+⭕¿Qué es un Fork?
+Es una copia de un repositorio ajeno alojada en tu propia cuenta de GitHub. 
+Te permite experimentar o colaborar en proyectos de otros sin afectar el original.
 
-## Conflictos en Git y GitHub
+⭕Pasos para hacerlo:
+1. Ve al repositorio original en GitHub y haz clic en el botón "Fork" (arriba a la derecha).
+2. GitHub creará una copia exacta en tu cuenta personal.
+3. Clona tu propio fork a tu computadora usando:
+git clone https://github.com/tu_usuario/nombre-del-repo.git
 
-```bash
-Ocurren cuando dos ramas modifican el mismo archivo (o línea).
-Ejemplo:
-- Tu compañero hace un PR a la rama master y cambia application.properties.
-- Tú también haces cambios en el mismo archivo en tu rama login.
-- Al intentar hacer merge/PR, GitHub detecta el conflicto.
-💡 GitHub mostrará un aviso: "This branch has conflicts that must be resolved".
-➡️ Haz clic en "Resolve conflicts", edita el archivo manualmente, guarda (Mark as resolved) y confirma el merge.
-```
-
-## Traer y fusionar cambios del remoto
-
-```bash
-git pull origin master ✅
-# Descarga y fusiona los últimos cambios de la rama 'master' del remoto con tu rama local actual.
-# Es útil para mantener la rama actual actualizada y evitar conflictos al hacer un git push o Pull Request (PR).
-
-git fetch origin master ✅
-# Solo descarga los últimos cambios de la rama 'master' del remoto (no los fusiona).
-# Luego puedes aplicar los cambios con: git merge origin master
-
-⚠️ Recomendación:
-- Si hiciste git fetch, primero haz el merge antes de hacer commits locales, para evitar conflictos.
-✅ Pero si tus cambios están en archivos distintos a los del remoto, puedes hacer commit sin problema antes del merge.
-```
-
-## Eliminar historial anterior y conservar solo el commit actual
-
-```bash
-git reset --soft $(git commit-tree HEAD^{tree} -m "Nuevo inicio") ✅
-# Elimina todos los commits anteriores y crea un nuevo commit con el estado actual del proyecto.
-# Deja el repositorio como si este fuera el primer commit (nuevo inicio de historial).
-# No borra archivos ni cambios, solo resetea el historial de commits.
-# ⚠️ Solo se debe usar solo si NO has hecho push, o si vas a forzar el push luego.
-```
-
-## Forzar subida de cambios al remoto (sobrescribir historial)
-
-```bash
-git push origin master --force ✅
-# Sube tu commit actual al repositorio remoto (por ejemplo GitHub) de forma forzada.
-# ⚠️ Sobrescribe el historial del remoto con el nuevo historial local (como si fuera el nuevo inicio).
-# ⚠️ Peligroso si trabajas en equipo, ya que borra los commits anteriores del remoto.
-# Solo se debe usar si estás seguro de que quieres reemplazar completamente el historial remoto.
-```
-
-## ¿Qué es un Fork?
-```bash
-Un fork es una copia de un repositorio que se guarda en tu cuenta de GitHub.  
-Te permite hacer cambios libremente sin afectar el proyecto original.  
-Es ideal cuando quieres colaborar con un proyecto externo.
-
-Pasos para hacer un fork:
-1. Ve al repositorio original en GitHub que deseas copiar.
-2. Haz clic en el botón "Fork" (parte superior derecha).
-3. GitHub creará una copia del repositorio en tu cuenta personal.
-4. Clona tu fork en tu computadora:
-git clone https://github.com/tu_usuario/nombre-del-repo.git ✅
-
-## Diferencia entre fork y git clone
-
-- Si haces un fork y luego aplicas cambios, puedes enviar un Pull Request.
-- El dueño del repositorio original podrá ver tus cambios y decidir si los acepta.
-- Si solo haces git clone, no puedes enviar Pull Request directamente,
-  ya que no tienes una copia vinculada al original en tu cuenta.
-```
-
-## Guardar cambios temporales con Git Stash
-```bash
-git stash ✅
-# Guarda temporalmente los cambios no confirmados (no comiteados) de tu rama actual.
-# Útil si necesitas cambiar de rama pero no quieres perder tu trabajo.
-
-git stash list ✅
-# Muestra la lista de cambios guardados con stash.
-
-git stash apply ✅
-# Recupera el último stash guardado y aplica los cambios a tu rama actual.
-
-git stash pop ✅
-# Aplica el último stash guardado y lo elimina de la lista.
-
-git stash drop ✅
-# Elimina un stash guardado (por defecto el más reciente).
-
-git stash clear ✅
-# Elimina todos los stash guardados.
+⭕Diferencia clave con 'git clone':
+- Un Fork te permite enviar 'Pull Requests' directos al dueño del proyecto original.
+- Un 'git clone' simple descarga el proyecto, pero no te vincula para proponer cambios oficiales si no eres colaborador.
 ```
